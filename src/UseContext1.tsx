@@ -1,22 +1,23 @@
-import React, {memo} from "react";
-import {UserContext} from "./App"
+import React from "react";
+import {InterfaceApp3, UseContext} from "./App"
 
-const UserContext2 = memo(()=> {
+const UseContext2: React.FC<InterfaceApp3> = (()=> {
     return(
-        <UserContext.Consumer>
-            {
-                name => {
-                    console.log("context2")
-                    return (
-                        <div>
-                            <h2>{name.name}</h2>
-                        </div>
-
-                    )
+        <div>
+            <UseContext.Consumer>
+                {
+                    props => {
+                        console.log("context2")
+                        return (
+                            <div>
+                                <h2>{props.name}</h2>
+                            </div>
+                        )
+                    }
                 }
-            }
-        </UserContext.Consumer>
+            </UseContext.Consumer>
+        </div>
     );
 })
 
-export default UserContext2;
+export default UseContext2;

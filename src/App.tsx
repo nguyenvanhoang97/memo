@@ -1,15 +1,15 @@
-import React, {useState, useEffect, createContext, useCallback, useMemo} from 'react';
+import React, {useState, useEffect, createContext, useMemo} from 'react';
 import axios from 'axios';
-import UserContext1 from "./UseContext";
-import UserContext2 from "./UseContext1";
+import UseContext3 from "./UseContext2";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com/posts";
 
-export const UserContext = createContext({name: 'abc', age: 0})
-
-export interface InterfaceApp {
-    counter: Function
+export interface InterfaceApp3 {
+    count: number,
+    name: string
 }
+
+export const UseContext = createContext({name: '', count: 0})
 
 function useAxios(url: any) {
     const [state, setState] = useState({posts: [], isLoading: false})
@@ -34,40 +34,29 @@ function useAxios(url: any) {
 }
 
 function App() {
-    const [name, setName] = useState('abc');
-    const [count, setCount] = useState(0);
-
-    const counter = useCallback(
-        n => {
-            setCount(count => count + n);
-        },
-        [setCount]
-    );
-
-    const useMemo1 = useMemo(() => UserContext1(count), [count]);
-
-    const useMemo2 = useMemo(() => UserContext2(name), [name]);
+    const [name, setName] = useState<string>('abc');
+    const [count, setCount] = useState<number>(10);
 
     const { state, error } = useAxios(BASE_URL)
-    console.log(state)
+
+    const useMemo3 = useMemo(() => <UseContext3 count={count} name={name} />, [])
 
     if (error) {
         return (<div>Loi</div>)
     }
-
     if (state.isLoading) {
         return <h1>Loading posts...</h1>
     }
 
     return (
         <div>
-            <UserContext.Provider value={{name:(name), age:(count)}}>
+            <UseContext.Provider value={{name:(name), count:(count)}}>
                 <div style={{backgroundColor:"red"}}>
-                    {useMemo1}
-
-                    {useMemo2}
+                    {useMemo3}
                 </div>
-            </UserContext.Provider>
+            </UseContext.Provider>
+
+            <button onClick={() => setCount(count + 1)}>Click</button>
 
             <div>
                 <h1>App</h1>
