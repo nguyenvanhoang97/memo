@@ -15,25 +15,28 @@ function useAxios(url: any) {
     const [state, setState] = useState({posts: [], isLoading: false})
     const [error, setError] = useState(null)
 
+    const getData = async () => axios.get(url)
+        .then(res => {
+            setState(prevState => ({
+                posts: res.data,
+                isLoading: false
+            }))
+        })
+        .catch(error => setError(error));
+
     useEffect(() => {
         setState(prevState => ({
             posts: [],
             isLoading: true
         }))
-        axios.get(url)
-            .then(res => {
-                setState(prevState => ({
-                    posts: res.data,
-                    isLoading: false
-                }))
-            })
-            .catch(error => setError(error));
+        getData()
     }, [url])
 
     return { state, error }
 }
 
 function App() {
+
     const [name, setName] = useState<string>('abc');
     const [count, setCount] = useState<number>(10);
 

@@ -1,13 +1,22 @@
 import React from "react";
-import {InterfaceApp3, UseContext} from "./App";
+import {UseContext} from "./App"
+import {useDispatch, useSelector} from "react-redux";
+import {decrement, increment} from "./actions";
 
-const UseContext1: React.FC<InterfaceApp3> = (()=> {
+function UseContext1() {
+    const counter = useSelector((state: any)=> state.counter)
+    const dispatch = useDispatch()
+
     return(
         <div>
+            <div>
+                <h2>Counter {counter}</h2>
+                <button onClick={() => dispatch(increment())}>+</button>
+                <button onClick={() => dispatch(decrement())}>-</button>
+            </div>
             <UseContext.Consumer>
                 {
                     props => {
-                        console.log("context1")
                         return (
                             <div>
                                 <h2>{props.count}</h2>
@@ -17,7 +26,7 @@ const UseContext1: React.FC<InterfaceApp3> = (()=> {
                 }
             </UseContext.Consumer>
         </div>
-    );
-})
+    )
+}
 
 export default UseContext1;
