@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import PostRenderProps from "./PostRenderProps";
 import * as serviceWorker from './serviceWorker';
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import allReducers from "./reducers";
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import thunk from "redux-thunk";
+import UsersContainer from "./reduxThunk";
 
-const store = createStore(allReducers)
+const store = createStore(
+    allReducers,
+    applyMiddleware(thunk)
+)
 
 ReactDOM.render(
     <React.StrictMode>
@@ -17,6 +22,7 @@ ReactDOM.render(
             <Router>
                 <Route exact path="/" component={App} />
                 <Route path='/post' component={PostRenderProps} />
+                <Route path='/redux' component={UsersContainer} />
             </Router>
         </Provider>
     </React.StrictMode>,
