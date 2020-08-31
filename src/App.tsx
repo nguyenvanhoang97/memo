@@ -1,6 +1,7 @@
 import React, {useState, useEffect, createContext, useMemo} from 'react';
 import axios from 'axios';
 import UseContext3 from "./UseContext2";
+import UsersContainer2 from "./thunkRedux2";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com/posts";
 

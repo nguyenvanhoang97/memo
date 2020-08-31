@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import { fetchUsers } from './actions'
+import UsersContainer2 from "./thunkRedux2";
+import {createStore} from "redux";
 
 // @ts-ignore
-function UsersContainer({ userData, fetchUsers } ) {
-    console.log(userData)
+function UsersContainer({ fetchUsers } ) {
     useEffect(() => {
         fetchUsers()
     }, [])
     return (
         <div>
-            <h2>Users List</h2>
-            <div>
-                {
-                    userData &&
-                    userData.users &&
-                    userData.users.map((user: any) => <p>{user.name}</p>)
-                }
+            <div style={{backgroundColor: ''}}>
+                <h2>Users List</h2>
+
+                <UsersContainer2/>
             </div>
+
         </div>
     )
 }
