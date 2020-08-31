@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import { fetchUsers } from './actions'
 import UsersContainer2 from "./thunkRedux2";
-import {createStore} from "redux";
+import {Link} from "react-router-dom";
 
 // @ts-ignore
 function UsersContainer({ fetchUsers } ) {
@@ -14,7 +14,7 @@ function UsersContainer({ fetchUsers } ) {
             <div style={{backgroundColor: ''}}>
                 <h2>Users List</h2>
 
-                <UsersContainer2/>
+                <Link to="/redux2">About</Link>
             </div>
 
         </div>

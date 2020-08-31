@@ -10,6 +10,7 @@ import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import thunk from "redux-thunk";
 import UsersContainer from "./reduxThunk";
+import UsersContainer2 from "./thunkRedux2";
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
@@ -19,6 +20,7 @@ ReactDOM.render(
             <Route exact path="/" component={App} />
             <Route path='/post' component={PostRenderProps} />
             <Route path='/redux' component={UsersContainer} />
+            <Route path='/redux2' component={UsersContainer2} />
         </Router>
     </Provider>,
     document.getElementById('root')
