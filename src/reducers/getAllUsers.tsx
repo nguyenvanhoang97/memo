@@ -3,9 +3,7 @@ export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
 export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE'
 
 const initialState = {
-    loading: false,
-    users: [],
-    error: ''
+
 }
 
 const reducer = (state = initialState, action: any) => {
@@ -17,7 +15,7 @@ const reducer = (state = initialState, action: any) => {
             }
         case FETCH_USERS_SUCCESS:
             return {
-                ...state,
+                users: action.payload,
                 loading: false,
                 error: ''
             }
@@ -25,7 +23,7 @@ const reducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: 'error'
             }
         default: return state
     }

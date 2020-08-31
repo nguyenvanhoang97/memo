@@ -22,31 +22,33 @@ export const decrement = () => {
 }
 
 export const fetchUsers = () => {
+    return (dispatch: any) => {
+        dispatch(fetchUsersRequest())
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(response => {
                 const users = response.data
-                fetchUsersSuccess(users)
+                dispatch(fetchUsersSuccess(users))
             })
-            .catch(error =>
-                error
-            )
-
+            .catch(error => {
+                dispatch(fetchUsersFailure(error))
+            })
+    }
 }
 
-export const fetchUsersRequest = () => {
+const fetchUsersRequest = () => {
     return {
         type: FETCH_USERS_REQUEST
     }
 }
 
-export const fetchUsersSuccess = (users: any) => {
+const fetchUsersSuccess = (users: any) => {
     return {
         type: FETCH_USERS_SUCCESS,
         payload: users
     }
 }
 
-export const fetchUsersFailure = (error: any) => {
+ const fetchUsersFailure = (error: any) => {
     return {
         type: FETCH_USERS_FAILURE,
         payload: error
