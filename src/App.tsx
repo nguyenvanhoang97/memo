@@ -64,7 +64,7 @@ function App() {
             <div>
                 <h1>App</h1>
                 {
-                    state.posts.map((da: any, index) => {
+                    state.posts.map((da: any) => {
                         return(
                             <div>
                                 <h2>{da.title}</h2>

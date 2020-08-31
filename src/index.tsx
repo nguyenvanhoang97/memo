@@ -11,21 +11,16 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import thunk from "redux-thunk";
 import UsersContainer from "./reduxThunk";
 
-const store = createStore(
-    allReducers,
-    applyMiddleware(thunk)
-)
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <Router>
-                <Route exact path="/" component={App} />
-                <Route path='/post' component={PostRenderProps} />
-                <Route path='/redux' component={UsersContainer} />
-            </Router>
-        </Provider>
-    </React.StrictMode>,
+    <Provider store={store}>
+        <Router>
+            <Route exact path="/" component={App} />
+            <Route path='/post' component={PostRenderProps} />
+            <Route path='/redux' component={UsersContainer} />
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );
 

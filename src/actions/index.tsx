@@ -6,8 +6,12 @@ import {
 } from './../reducers/getAllUsers';
 
 export const increment = () => {
-    return {
-        type: 'INCREMENT'
+    return (dispatch: any) => {
+        setTimeout(() => {
+            dispatch({
+                type: 'INCREMENT'
+            })
+        }, 2000)
     }
 }
 
@@ -18,17 +22,15 @@ export const decrement = () => {
 }
 
 export const fetchUsers = () => {
-    return (dispatch: any) => {
-        dispatch(fetchUsersRequest())
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(response => {
                 const users = response.data
-                dispatch(fetchUsersSuccess(users))
+                fetchUsersSuccess(users)
             })
-            .catch(error => {
-                dispatch(fetchUsersFailure(error.message))
-            })
-    }
+            .catch(error =>
+                error
+            )
+
 }
 
 export const fetchUsersRequest = () => {
@@ -40,13 +42,13 @@ export const fetchUsersRequest = () => {
 export const fetchUsersSuccess = (users: any) => {
     return {
         type: FETCH_USERS_SUCCESS,
-        users
+        payload: users
     }
 }
 
 export const fetchUsersFailure = (error: any) => {
     return {
         type: FETCH_USERS_FAILURE,
-       error
+        payload: error
     }
 }

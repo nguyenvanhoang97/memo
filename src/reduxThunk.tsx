@@ -1,30 +1,25 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers} from "./actions";
+import { fetchUsers } from "./actions";
 
-function UsersContainer ( userData: any ) {
+function UsersContainer (userData: any) {
     useEffect(() => {
         fetchUsers()
-    }, [])
-    return userData.loading ? (
-        <h2>Loading</h2>
-    ) : userData.error ? (
-        <h2>{userData.error}</h2>
-    ) : (
+    }, [userData])
+    return (
         <div>
             <h2>Users List</h2>
             <div>
-                {userData &&
-                userData.users &&
-                userData.users.map((user:any) => <p>{user.name}</p>)}
+                {}
             </div>
         </div>
     )
 }
 
 const mapStateToProps = (state:any) => {
+    console.log(state.users)
     return {
-        userData: state.user
+        userData: state.users
     }
 }
 

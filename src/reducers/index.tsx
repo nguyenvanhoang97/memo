@@ -1,10 +1,10 @@
 import counterReducer from "./counterReducer";
-import getAllUsers from "./getAllUsers";
+import getAllUser from './getAllUsers'
 import {combineReducers} from "redux";
 
 const allReducers = combineReducers({
     counter: counterReducer,
-    user: getAllUsers
+    users: getAllUser
 })
 
 export default allReducers
